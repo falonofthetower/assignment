@@ -1,9 +1,13 @@
 #calculator.rb
 
 Kernel.puts("Welcome to the calcuator program!")
-selection = nil
 Kernel.puts("Please press:\n1 for addition\n2 for subtraction\n3 for mutiplication\n4 for division")
 selection = Kernel.gets().chomp()
+until (1..4).include?(selection.to_i())
+  Kernel.puts("Please enter a valid selecton:")
+  Kernel.puts("Please press:\n1 for addition\n2 for subtraction\n3 for mutiplication\n4 for division")
+  selection = Kernel.gets().chomp()
+end  
 Kernel.puts("What is the first number?")
 number1 = Kernel.gets().chomp()
 Kernel.puts("What is the second number?")
