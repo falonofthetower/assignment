@@ -1,11 +1,20 @@
 # calculator.rb
 require 'pry'
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-def valid_number(test)
-  Integer(test) rescue nil
+def float?(decimal)
+  Float(decimal) rescue nil
+end
+
+def integer?(int)
+  Integer(int) rescue nil
+end
+
+def number?(test)
+  integer?(test) || float?(test)
 end
 prompt("Welcome to the calcuator program!")
 prompt("Please enter your name:")
@@ -58,7 +67,7 @@ number2 = ''
 loop do
   prompt("What is the first number?")
   number1 = Kernel.gets().chomp()
-  if valid_number(number1)
+  if number?(number1)
     break
   else
     prompt("Error! Please input a valid number.")
@@ -68,7 +77,7 @@ end
 loop do
   prompt("What is the second number?")
   number2 = Kernel.gets().chomp()
-  if valid_number(number2)
+  if number?(number2)
     break
   else
     prompt("Error! Please input a valid number.")
