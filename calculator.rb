@@ -1,5 +1,7 @@
 # calculator.rb
 require 'pry'
+require 'yaml'
+MESSAGES = YAML.load_file('calculator_messages.yml')
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -16,8 +18,8 @@ end
 def number?(test)
   integer?(test) || float?(test)
 end
-prompt("Welcome to the calcuator program!")
-prompt("Please enter your name:")
+prompt(MESSAGES['welcome'])
+prompt(MESSAGES['enter_name'])
 name = Kernel.gets().chomp()
 
 def choice(select)
@@ -36,7 +38,7 @@ end
 
 loop do # name validation
   if name.empty?()
-    prompt("Please enter your name:")
+    prompt(MESSAGES['enter_name'])
     name = Kernel.gets().chomp()
   else
     prompt("Hello #{name}!")
@@ -57,7 +59,7 @@ prompt(selection_prompt)
 selection = Kernel.gets().chomp()
 
 until (1..4).include?(selection.to_i())
-  prompt("Please enter 1,2,3,4.")
+  prompt(MESSAGES['valid_input'])
   prompt(selection_prompt)
   selection = Kernel.gets().chomp()
 end
@@ -66,22 +68,22 @@ number1 = ''
 number2 = ''
 
 loop do
-  prompt("What is the first number?")
+  prompt(MESSAGES['enter_first_number'])
   number1 = Kernel.gets().chomp()
   if number?(number1)
     break
   else
-    prompt("Error! Please input a valid number.")
+    prompt(MESSAGES['valid_input'])
   end
 end
 
 loop do
-  prompt("What is the second number?")
+  prompt(MESSAGES['enter_second_number'])
   number2 = Kernel.gets().chomp()
   if number?(number2)
     break
   else
-    prompt("Error! Please input a valid number.")
+    prompt(MESSAGES['valid_input'])
   end
 end
 
@@ -96,12 +98,12 @@ results = case selection
             number1.to_f() / number2.to_f()
           end
 prompt("#{choice(selection)} #{number1} and #{number2} is #{results}")
-prompt("Do you want to run another calculation? Type y for yes")
+prompt(MESSAGES['another_calculation'])
 reply = Kernel.gets().chomp()
 break unless reply.downcase().start_with?('y')
 end
 
-prompt("Thank you for using the calculator program!")
+prompt(MESSAGES['thanks'])
 
 =begin
 if selection == '1'
