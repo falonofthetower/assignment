@@ -21,7 +21,7 @@ prompt("Please enter your name:")
 name = Kernel.gets().chomp()
 
 def choice(select)
-  case select
+stored = case select
   when '1'
     'Adding'
   when '2'
@@ -31,6 +31,7 @@ def choice(select)
   when '4'
     'Dividing'
   end
+stored
 end
 
 loop do # name validation
