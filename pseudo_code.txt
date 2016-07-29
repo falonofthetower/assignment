@@ -1,0 +1,49 @@
+#pseudo_code
+
+1. a method that returns a sum of two integers
+
+casual:define a method that adds two integers and returns the value
+formal
+
+formal:
+START
+
+GET number1= gets.chomp
+GET number2= gets.chomp
+SET answer = nil
+
+def add(operand1,operand2)
+  answer = operand1 + operand2
+end
+
+puts add(number1,number2)  
+
+END
+
+2. a method that takes an array of strings, and returns a string that is all those strings concatenated together
+
+casual:  iterate over the array, adding each element to a variable
+print string
+
+START 
+holder =''
+def add_string(strings)
+  strings.each do |i|
+SET holder += i 
+end
+
+puts add_string(array_of_strings)
+END
+
+3.a method that takes an array of integers, and returns a new array with every other element
+
+casual: define a method. iterate over array of integers and return every other value.
+
+formal:
+START
+
+def odd_return(array1)
+  array1.map.each_with_index {|value,index| puts value if index.odd?}  
+end
+
+END
