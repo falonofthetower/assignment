@@ -1,10 +1,11 @@
 # calculator.rb
+require 'pry'
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
 def valid_number(test)
-  test.to_i.nonzero?()
+  Integer(test) rescue nil
 end
 prompt("Welcome to the calcuator program!")
 prompt("Please enter your name:")
@@ -51,8 +52,8 @@ until (1..4).include?(selection.to_i())
   selection = Kernel.gets().chomp()
 end
 
-number1 = nil
-number2 = nil
+number1 = ''
+number2 = ''
 
 loop do
   prompt("What is the first number?")
