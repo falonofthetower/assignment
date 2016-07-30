@@ -2,6 +2,8 @@
 
 welcome: 'A mortgage calculator:'
 principle: 'Please enter the size of your loan:'
-valid: 'Error! Please enter a number.'
-interest: 'Please enter the yearly interest rate:'
+valid: 'Error! Please enter a valid number.'
+zero: 'Please enter a integer greater than zero:'
+interest: 'Please enter the yearly interest rate(ex. 18% entered as 18):'
 duration: 'How long is the loan in years?'
+error_negative: 'Please enter a number greater or equal to zero:'
