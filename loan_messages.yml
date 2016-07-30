@@ -1,0 +1,7 @@
+# loan_messages.yml
+
+welcome: 'A mortgage calculator:'
+principle: 'Please enter the size of your loan:'
+valid: 'Error! Please enter a number.'
+interest: 'Please enter the yearly interest rate:'
+duration: 'How long is the loan in years?'
