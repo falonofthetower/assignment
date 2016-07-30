@@ -19,20 +19,20 @@ def number?(number)
   integer?(number) || float?(number)
 end
 
-def monthly_payment(p, j, n)
-  payment = p.to_f * (j.to_f / (1 - (1 + j.to_f)**-n.to_i))
+def monthly_payment(loan, m_interest, months)
+  loan.to_f * (m_interest.to_f / (1 - (1 + m_interest.to_f)**-months.to_i))
 end
 
-def monthly_interest_rate(yearly_interest_rate)
-  monthly_rate = yearly_interest_rate.to_f/12
+def monthly_interest_rate(yearly_interest)
+  yearly_interest.to_f / 12
 end
 
 def number_months(number_years)
-  months = number_years.to_i * 12
+  number_years.to_i * 12
 end
 
-
 prompt(MESSAGES['welcome'])
+
 loop do
   prompt(MESSAGES['principle'])
   principle = gets.chomp
@@ -41,7 +41,7 @@ loop do
     if number?(principle) && principle.to_f >= 0
       break
     else
-      prompt(MESSAGES['valid'])
+      prompt(MESSAGES['not_valid'])
       principle = gets.chomp
     end
   end
@@ -53,7 +53,7 @@ loop do
     if number?(interest_rate)
       break
     else
-      prompt(MESSAGES['valid'])
+      prompt(MESSAGES['not_valid'])
       interest_rate = gets.chomp
     end
   end
@@ -63,18 +63,20 @@ loop do
 
   loop do
     if years.to_i > 0 && integer?(years)
-    break
+      break
     else
-      prompt(MESSAGES['valid'])
+      prompt(MESSAGES['not_valid'])
       prompt(MESSAGES['duration'])
       years = gets.chomp
     end
   end
-  monthly_interest = monthly_interest_rate(interest_rate)/100
-  number_months = number_months(years)
-  prompt("Principle: $#{principle}")
-  prompt("Interest Rate: #{interest_rate}%")
-  prompt("Monthly payment: $#{monthly_payment(principle, monthly_interest, number_months).round(2)}")
-  prompt("If you would like to calculate another loan please press y or press any other key to exit:")
+
+  monthly_interest = monthly_interest_rate(interest_rate) / 100
+  months = number_months(years)
+  prompt("Principle:  $#{principle}")
+  prompt("Interest Rate:  #{interest_rate}%")
+  prompt("Monthly payment:\
+  $#{monthly_payment(principle, monthly_interest, months).round(2)}")
+  prompt(MESSAGES['run_again'])
   break unless gets.chomp.downcase.start_with?('y')
 end
