@@ -52,6 +52,8 @@ loop do
 
   loop do
     break if number?(interest_rate) && interest_rate.to_f > 0
+    error_message
+    interest_rate = gets.chomp
   end
 
   prompt(MESSAGES['duration'])
@@ -70,7 +72,7 @@ loop do
   prompt("Principle: $#{principle}")
   prompt("Interest Rate: #{interest_rate}%")
   prompt("Term(months): #{months.round(2)}")
-  prompt("Monthly payment: "\
+  prompt('Monthly payment: ' + \
          "$#{monthly_payment(principle, monthly_interest, months).round(2)}")
   prompt(MESSAGES['run_again'])
   break unless gets.chomp.downcase.start_with?('y')
