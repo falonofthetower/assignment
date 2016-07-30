@@ -31,47 +31,50 @@ def number_months(number_years)
   months = number_years.to_i * 12
 end
 
+
 prompt(MESSAGES['welcome'])
-prompt(MESSAGES['principle'])
-principle = gets.chomp
-
 loop do
-  if number?(principle)
-    break
-  else
-    prompt(MESSAGES['valid'])
-    prompt(MESSAGES['principle'])
-    principle = gets.chomp
+  prompt(MESSAGES['principle'])
+  principle = gets.chomp
+
+  loop do
+    if number?(principle) && principle.to_f >= 0
+      break
+    else
+      prompt(MESSAGES['valid'])
+      principle = gets.chomp
+    end
   end
-end
 
-prompt(MESSAGES['interest'])
-interest_rate = gets.chomp
+  prompt(MESSAGES['interest'])
+  interest_rate = gets.chomp
 
-loop do
-  if number?(interest_rate)
-    break
-  else
-    prompt(MESSAGES['valid'])
-    prompt(MESSAGES['interest'])
-    interest_rate = gets.chomp
+  loop do
+    if number?(interest_rate)
+      break
+    else
+      prompt(MESSAGES['valid'])
+      interest_rate = gets.chomp
+    end
   end
-end
 
-prompt(MESSAGES['duration'])
-years = gets.chomp
+  prompt(MESSAGES['duration'])
+  years = gets.chomp
 
-loop do
-  if integer?(years)
+  loop do
+    if years.to_i > 0 && integer?(years)
     break
-  else
-    prompt(MESSAGES['valid'])
-    prompt(MESSAGES['duration'])
-    years = gets.chomp
+    else
+      prompt(MESSAGES['valid'])
+      prompt(MESSAGES['duration'])
+      years = gets.chomp
+    end
   end
+  monthly_interest = monthly_interest_rate(interest_rate)/100
+  number_months = number_months(years)
+  prompt("Principle: $#{principle}")
+  prompt("Interest Rate: #{interest_rate}%")
+  prompt("Monthly payment: $#{monthly_payment(principle, monthly_interest, number_months).round(2)}")
+  prompt("If you would like to calculate another loan please press y or press any other key to exit:")
+  break unless gets.chomp.downcase.start_with?('y')
 end
-monthly_interest = monthly_interest_rate(interest_rate)/100
-number_months = number_months(years)
-puts monthly_payment(principle, monthly_interest, number_months).round(2)
-
-
